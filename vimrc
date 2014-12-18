@@ -17,6 +17,7 @@ Plugin 'gmarik/Vundle.vim'              " let Vundle manage Vundle
 Plugin 'vim-scripts/Gundo'              " visualize vim undo tree
 Plugin 'terryma/vim-multiple-cursors'   " multi-cursors
 Plugin 'kien/ctrlp.vim'                 " fuzzy file search
+Plugin 'tpope/vim-fugitive'             " git features from within vim
 Plugin 'mileszs/ack.vim'                " ack in vim
 Plugin 'Lokaltog/vim-easymotion'        " jump anywhere quickly
 Plugin 'airblade/vim-gitgutter'         " git diff in sign column
