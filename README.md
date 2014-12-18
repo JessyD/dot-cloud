@@ -7,8 +7,8 @@ My vim, everywhere.
 
 The installation script is only needed once.
 
-Use it with care. It has not been used with exotic configurations. The `.vimrc`
-file and the `.vim` folder are supposed to be in the home folder `~/`.
+Use it with care. It has not been tested with exotic configurations. The
+`.vimrc` file and the `.vim` folder are supposed to be in the home folder `~/`.
 
 The script tries to be conservative and keep the present custom vim, if any. No
 merge is done: If installation goes on, the version in the repository is
