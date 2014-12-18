@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # function to ask for confirmation
 confirm () {
@@ -34,7 +34,7 @@ echo "Installing dependencies..."
 platform="$(uname -s)"
 if   [[ "$platform" == 'Linux'  ]]
 then
-    sudo apt-get install ack
+    sudo apt-get install ack-grep
 elif [[ "$platform" == 'Darwin' ]]
 then
     brew install ack
@@ -49,7 +49,7 @@ ln -s ~/Code/vim-cloud/.vimrc ~/.vimrc
 #ln -s .vimrc ~/.vimrc
 
 # plugins initialization
-echo "Installing plugin with Vundle"
+echo "Installing plugin with Vundle..."
 vim +PluginInstall +qall
 
 echo "Done! Goodbye"
