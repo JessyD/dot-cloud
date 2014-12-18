@@ -21,10 +21,10 @@ then
     # exits by default
     ! confirm "Do you want to continue? [y/N]" && exit
     # backs up otherwise
-    echo "OK, but I don't trust you. Backing up..."
+    echo "Backing up..."
     mkdir -p ~/.vim.old
     cp -r ~/.vim ~/.vimrc ~/.vim.old/ 2>/dev/null
-    rm -rf ~/.vim ~/.vimrc
+    rm ~/.vimrc
 fi
 
 # dependencies
@@ -49,7 +49,7 @@ ln -s ~/Code/vim-cloud/vimrc ~/.vimrc
 #ln -s .vimrc ~/.vimrc
 
 # plugins initialization
-echo "Installing plugin with Vundle..."
+echo "Installing plugins with Vundle..."
 vim +PluginInstall +qall
 
 echo "Done! Goodbye"
