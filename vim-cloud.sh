@@ -24,7 +24,7 @@ fi
 
 # backup anyway
 mkdir -p ~/.vim.old
-cp -r ~/.vim ~/.vimrc ~/.vim.old/
+cp -r ~/.vim ~/.vimrc ~/.vim.old/ 2>/dev/null
 rm -rf ~/.vim ~/.vimrc
 
 # dependencies
