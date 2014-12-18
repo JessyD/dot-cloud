@@ -15,30 +15,28 @@ confirm () {
 }
 
 # ask for confirmation
-if [[ "$(ls ~/.vim)" != ''  ]]
+if [ -e ~/.vim -o -e ~/.vimrc ]
 then
     echo "A customized version of vim has already been found."
+    # exits by default
     ! confirm "Do you want to continue? [y/N]" && exit
+    # backs up otherwise
     echo "OK, but I don't trust you. Backing up..."
+    mkdir -p ~/.vim.old
+    cp -r ~/.vim ~/.vimrc ~/.vim.old/ 2>/dev/null
+    rm -rf ~/.vim ~/.vimrc
 fi
 
-# backup anyway
-mkdir -p ~/.vim.old
-cp -r ~/.vim ~/.vimrc ~/.vim.old/ 2>/dev/null
-rm -rf ~/.vim ~/.vimrc
-
 # dependencies
-echo "Installing dependencies..." 
+echo "Installing dependencies..."
 
-## check operating systems
+## operating system-specific dependencies
 platform="$(uname -s)"
 if   [[ "$platform" == 'Linux'  ]]
 then
-    ### Linux-specific dependencies
     sudo apt-get install ack
 elif [[ "$platform" == 'Darwin' ]]
 then
-    ### OS X-specific dependencies
     brew install ack
 else
     echo "Platform $platform not supported"
