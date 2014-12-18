@@ -45,7 +45,7 @@ fi
 ## common dependencies
 mkdir -p ~/.vim/bundle
 git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-ln -s ~/Code/vim-cloud/vimrc ~/.vimrc
+ln -s $(pwd)/vimrc ~/.vimrc
 #ln -s .vimrc ~/.vimrc
 
 # plugins initialization
