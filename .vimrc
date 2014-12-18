@@ -107,7 +107,11 @@ set backspace=indent,eol,start          " backspace for special cases
 
 """ color scheme
 set t_Co=256                            " 256 colors
-colorscheme badwolf                     " colorscheme
+try
+    colorscheme badwolf                 " colorscheme
+catch /^Vim\%((\a\+)\)\=:E185/
+    colorscheme elflord                 " just happens at first installation
+endtry
 
 """ tabs
 set shiftwidth=4                        " shift width
