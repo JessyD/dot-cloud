@@ -42,10 +42,17 @@ nmap <unique> <Space> <Plug>(easymotion-bd-w)
 let g:EasyMotion_smartcase = 1                          " smart case as in vim
 let g:EasyMotion_keys = 'abcdefghijklmnopqrstuvwxyz'    " layout-friendly
 
+""" supertab - prevent unwanted tabs
+let g:SuperTabNoCompleteAfter = ['^', ',', '\s', ';', "\'", '"']
+
+""" CtrlP - basic configuration
+let g:ctrlp_map = '<c-p>'                               " main command
+let g:ctrlp_cmd = 'CtrlP'
+
+""" CtrlP - working directory using track control or current directory
+let g:ctrlp_working_path_mode = 'ra'
+
 """ CtrlP - 'git ls-files' used as root of search, find used as fallback
-"let g:ctrlp_map = '<c-p>'
-"let g:ctrlp_cmd = 'CtrlP'
-"let g:ctrlp_working_path_mode = 'ra'
 "let g:ctrlp_user_command = {
 "    \ 'types': {
 "        \ 1: ['.git',
