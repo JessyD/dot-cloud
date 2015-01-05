@@ -18,9 +18,9 @@ confirm () {
 if [ -e ~/.vim -o -e ~/.vimrc ]
 then
     echo "A customized version of vim has already been found."
-    # exits by default
+    # exit by default
     ! confirm "Do you want to continue? [y/N]" && exit
-    # backs up otherwise
+    # back up otherwise
     echo "Backing up..."
     mkdir -p ~/.vim.old
     cp -r ~/.vim ~/.vimrc ~/.vim.old/ 2>/dev/null
@@ -45,8 +45,8 @@ fi
 ## common dependencies
 mkdir -p ~/.vim/bundle
 git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+# FIXME what happens if script executed from other folder?
 ln -s $(pwd)/vimrc ~/.vimrc
-#ln -s .vimrc ~/.vimrc
 
 # plugins initialization
 echo "Installing plugins with Vundle..."
