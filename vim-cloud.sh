@@ -45,8 +45,11 @@ fi
 ## common dependencies
 mkdir -p ~/.vim/bundle
 git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-# FIXME what happens if script executed from other folder?
-ln -s $(pwd)/vimrc ~/.vimrc
+
+# create symbolic link
+script_path="`dirname \"$0\"`"                  # relative path of script
+script_path="`( cd \"$script_path\" && pwd )`"  # absolute path
+ln -s $script_path/vimrc ~/.vimrc
 
 # plugins initialization
 echo "Installing plugins with Vundle..."
