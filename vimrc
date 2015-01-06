@@ -38,19 +38,24 @@ filetype plugin indent on
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """ easymotion
-nmap <unique> <Space> <Plug>(easymotion-bd-w)
+nnoremap <unique> <Space> <Plug>(easymotion-bd-w)
 let g:EasyMotion_smartcase = 1                          " smart case as in vim
 let g:EasyMotion_keys = 'abcdefghijklmnopqrstuvwxyz'    " layout-friendly
 
 """ supertab - prevent unwanted tabs
-let g:SuperTabNoCompleteAfter = ['^', ',', '\s', ';', "\'", '"']
+let g:SuperTabNoCompleteAfter = ['^', ',', '\s', ';', "\'", '"', '>']
 
 """ ctrlp - basic configuration
-let g:ctrlp_map = '<c-p>'                               " main command
+let g:ctrlp_map = '<C-p>'                               " main command
 let g:ctrlp_cmd = 'CtrlP'
 
-""" ctrlp - working directory using track control or current directory
+""" ctrlp - customization
+let g_ctrlp_switch_buffer = 'E'                     " re-open existing buffers
+let g:ctrlp_tabpage_position = 'ac'                 " new tab after current
+
+""" ctrlp - working directory using version control or current directory
 let g:ctrlp_working_path_mode = 'ra'
+nnoremap <unique> <C-l> :CtrlP ~/Code/<CR>          " add custom dir
 
 """ ctrlp - 'git ls-files' used as root of search, find used as fallback
 "let g:ctrlp_user_command = {
