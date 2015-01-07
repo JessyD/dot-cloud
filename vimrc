@@ -55,7 +55,7 @@ let g:ctrlp_tabpage_position = 'ac'                 " new tab after current
 
 """ ctrlp - working directory using version control or current directory
 let g:ctrlp_working_path_mode = 'ra'
-nnoremap <unique> <C-l> :CtrlP ~/Code/<CR>          " add custom dir
+nnoremap <unique> <C-l> :CtrlP ~/Code/<CR>
 
 """ ctrlp - 'git ls-files' used as root of search, find used as fallback
 "let g:ctrlp_user_command = {
