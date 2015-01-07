@@ -38,7 +38,7 @@ filetype plugin indent on
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """ easymotion
-nnoremap <unique> <Space> <Plug>(easymotion-bd-w)
+nmap <unique> <Space> <Plug>(easymotion-bd-w)
 let g:EasyMotion_smartcase = 1                          " smart case as in vim
 let g:EasyMotion_keys = 'abcdefghijklmnopqrstuvwxyz'    " layout-friendly
 
