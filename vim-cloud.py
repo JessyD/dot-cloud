@@ -57,8 +57,7 @@ def switch(mode):
         'c': clean_vimrc,
     }[mode]
 
-if __name__ == "__main__":
-    # parse arguments
+def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("-m", "--mode",
                         help="Execution mode: (i)nstall, (u)pdate, (c)lean",
@@ -73,3 +72,6 @@ if __name__ == "__main__":
 
     # execute the function corresponding to the chosen mode
     switch(args.mode)(args)
+
+if __name__ == "__main__":
+    main()
