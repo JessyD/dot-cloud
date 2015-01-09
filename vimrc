@@ -28,6 +28,7 @@ Plugin 'ntpeters/vim-better-whitespace' " highlight unwanted whitespaces
 Plugin 'sjl/badwolf'                    " colorscheme
 Plugin 'scrooloose/nerdtree'            " file and folder structure
 Plugin 'bling/vim-airline'              " status bar
+Plugin 'dbakker/vim-projectroot'        " guess project root from file
 
 """ required
 call vundle#end()
@@ -125,8 +126,8 @@ set formatoptions+=t                    " wrap word
 set colorcolumn=80                      " color text after textwidth
 
 """ folding
-set foldenable                          " enable folding
 set foldmethod=indent                   " fold based on indentation
+set foldenable                          " enable folding
 set foldlevelstart=10                   " small snippets are unfolded
 
 """ search
@@ -153,6 +154,12 @@ au CursorMoved * call CheckFileChanges()
 set mouse=a                             " mouse can interact
 
 """ project-specific settings (may override default)
-if filereadable(".vim.custom")
-	so .vim.custom
-endif
+function ProjectSpecificSettings()
+    let l:path = expand('%:p')
+    let l:root = projectroot#guess(l:path)
+    let l:vim_custom = l:root . "/.custom.vim"
+    if filereadable(l:vim_custom)
+        exec "so " . l:vim_custom
+    endif
+endfunction
+au BufReadPost,BufNewFile * call ProjectSpecificSettings()
