@@ -43,7 +43,7 @@ let g:EasyMotion_smartcase = 1                          " smart case as in vim
 let g:EasyMotion_keys = 'abcdefghijklmnopqrstuvwxyz'    " layout-friendly
 
 """ supertab - prevent unwanted tabs
-let g:SuperTabNoCompleteAfter = ['^', ',', '\s', ';', "\'", '"', '>']
+let g:SuperTabNoCompleteAfter = ['^', ',', '\s', ';', "\'", '"', '>', ')', ':']
 
 """ ctrlp - basic configuration
 let g:ctrlp_map = '<C-p>'                               " main command
@@ -153,8 +153,9 @@ set showmatch                           " highlight matching {[()]}
 """ share clipboard with system (may show unwanted behavior)
 set clipboard=unnamed                   " system wide clipboard
 
-""" fle changes
-set autoread                            " auto-detect changes opened files
+""" auto-detect file changes (not if in command line window)
+set autoread
+au CursorMoved * if getcmdtype() == "" | checktime | endif
 
 """ mouse interaction (may show unwanted behavior)
 set mouse=a                             " mouse can interact
