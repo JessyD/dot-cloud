@@ -57,32 +57,6 @@ let g:ctrlp_tabpage_position = 'ac'                 " new tab after current
 let g:ctrlp_working_path_mode = 'ra'
 nnoremap <unique> <C-l> :CtrlP ~/Code/<CR>
 
-""" ctrlp - 'git ls-files' used as root of search, find used as fallback
-"let g:ctrlp_user_command = {
-"    \ 'types': {
-"        \ 1: ['.git',
-"        \     'cd %s && git ls-files --cached --exclude-standard --others'],
-"        \ 2: ['.hg', 'hg --cwd %s status -numac -I . $(hg root)'],
-"    \ },
-"    \ 'fallback': "find %s " .
-"        \ "-type f" .
-"        \ "-regextype posix-egrep" .
-"        \ "! -path './.hg/*'" .
-"        \ "! -path './.git/*'" .
-"        \ "! -path './.svn/*'" .
-"        \ "! -path './.tox/*'" .
-"        \ "! -path '*.egg-info*/*'" .
-"        \ "! -path '*.build.*'" .
-"        \ "! -path './venv*/*'" .
-"        \ "! -path './virtualenv*/*'"
-"    \ }
-"
-"let g:ctrlp_custom_ignore = {
-"  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
-"  \ 'file': '\v\.(exe|so|dll)$',
-"  \ 'link': 'some_bad_symbolic_links',
-"  \ }
-
 """ NERDTree - auto-start
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * NERDTree
@@ -92,10 +66,13 @@ else
 endif
 
 """ NERDTree - close all if only NERDTree left
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType")
-                                      \&& b:NERDTreeType == "primary")
-                       \| q
-                   \| endif
+function NERDTreeCloseAll()
+    if (winnr("$") == 1 && exists("b:NERDTreeType")
+                      \ && b:NERDTreeType == "primary")
+        q
+    endif
+endfunction
+au bufenter * call NERDTreeCloseAll()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Appearance
@@ -155,7 +132,12 @@ set clipboard=unnamed                   " system wide clipboard
 
 """ auto-detect file changes (not if in command line window)
 set autoread
-au CursorMoved * if getcmdtype() == "" | checktime | endif
+function CheckFileChanges()
+    if getcmdtype() == ""
+        checktime
+    endif
+endfunction
+au CursorMoved * call CheckFileChanges()
 
 """ mouse interaction (may show unwanted behavior)
 set mouse=a                             " mouse can interact
