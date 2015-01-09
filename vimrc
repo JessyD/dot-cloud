@@ -40,10 +40,12 @@ filetype plugin indent on
 """ easymotion
 nmap <unique> <Space> <Plug>(easymotion-bd-w)
 let g:EasyMotion_smartcase = 1                          " smart case as in vim
-let g:EasyMotion_keys = 'abcdefghijklmnopqrstuvwxyz'    " layout-friendly
+let g:EasyMotion_keys = 'asdghklqwertyuiopzxcvbnmfj'    " layout-friendly
 
 """ supertab - prevent unwanted tabs
-let g:SuperTabNoCompleteAfter = ['^', ',', '\s', ';', "\'", '"', '>', ')', ':']
+let g:SuperTabNoCompleteAfter = [
+    \ '^', ',', '\s', ';', "\'", '"', '>', ')', ':', '/'
+\ ]
 
 """ ctrlp - basic configuration
 let g:ctrlp_map = '<C-p>'                               " main command
@@ -53,9 +55,17 @@ let g:ctrlp_cmd = 'CtrlP'
 let g_ctrlp_switch_buffer = 'E'                     " re-open existing buffers
 let g:ctrlp_tabpage_position = 'ac'                 " new tab after current
 
-""" ctrlp - working directory using version control or current directory
+""" ctrlp - working directory using version control or current/custom directory
 let g:ctrlp_working_path_mode = 'ra'
 nnoremap <unique> <C-l> :CtrlP ~/Code/<CR>
+
+"let g:ctrlp_show_hidden = 1
+"let g:ctrlp_custom_ignore = {
+"    \ 'dir' : '\v[\/]\.(git|hg|svn)$',
+"    \ 'file': '\v\.(exe|so|dll)$',
+"    \ 'file': '^\.^[gitignore]',
+"    \ 'link': 'some_bad_symbolic_links',
+"    \ }
 
 """ NERDTree - auto-start
 autocmd StdinReadPre * let s:std_in=1
@@ -99,7 +109,7 @@ set backspace=indent,eol,start          " backspace for special cases
 set t_Co=256                            " 256 colors
 try
     colorscheme badwolf                 " colorscheme
-catch /^Vim\%((\a\+)\)\=:E185/
+catch /^Vim\%((\a\+)\)\=:E185/          " fallback
     colorscheme elflord                 " just happens at first installation
 endtry
 
