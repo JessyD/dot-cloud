@@ -29,6 +29,8 @@ Plugin 'sjl/badwolf'                    " colorscheme
 Plugin 'scrooloose/nerdtree'            " file and folder structure
 Plugin 'bling/vim-airline'              " status bar
 Plugin 'dbakker/vim-projectroot'        " guess project root from file
+Plugin 'RobertAudi/vis.vim'             " substitute visual blocks
+Plugin 'clones/vim-cecutil'             " needed by vis
 
 """ required
 call vundle#end()
