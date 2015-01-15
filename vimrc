@@ -23,7 +23,6 @@ Plugin 'Lokaltog/vim-easymotion'        " jump anywhere quickly
 Plugin 'airblade/vim-gitgutter'         " git diff in sign column
 Plugin 'scrooloose/syntastic'           " syntax checking
 Plugin 'ervandew/supertab'              " tab auto-completion
-Plugin 'scrooloose/nerdcommenter'       " comment lines out
 Plugin 'ntpeters/vim-better-whitespace' " highlight unwanted whitespaces
 Plugin 'sjl/badwolf'                    " colorscheme
 Plugin 'scrooloose/nerdtree'            " file and folder structure
@@ -31,6 +30,7 @@ Plugin 'bling/vim-airline'              " status bar
 Plugin 'dbakker/vim-projectroot'        " guess project root from file
 Plugin 'RobertAudi/vis.vim'             " substitute visual blocks
 Plugin 'clones/vim-cecutil'             " needed by vis
+Plugin 'tpope/vim-commentary'           " easily comment lines out
 
 """ required
 call vundle#end()
@@ -51,24 +51,17 @@ let g:SuperTabNoCompleteAfter = [
 \ ]
 
 """ ctrlp - basic configuration
-let g:ctrlp_map = '<C-p>'                               " main command
-let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_map = '<C-p>'                           " mapped to ctrl-P
+let g:ctrlp_cmd = 'CtrlP'                           " default command
 
 """ ctrlp - customization
 let g_ctrlp_switch_buffer = 'E'                     " re-open existing buffers
 let g:ctrlp_tabpage_position = 'ac'                 " new tab after current
+let g:ctrlp_show_hidden = 1                         " always show hidden files
 
 """ ctrlp - working directory using version control or current/custom directory
-let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_working_path_mode = 'ra'                " current + version control
 nnoremap <unique> <C-l> :CtrlP ~/Code/<CR>
-
-"let g:ctrlp_show_hidden = 1
-"let g:ctrlp_custom_ignore = {
-"    \ 'dir' : '\v[\/]\.(git|hg|svn)$',
-"    \ 'file': '\v\.(exe|so|dll)$',
-"    \ 'file': '^\.^[gitignore]',
-"    \ 'link': 'some_bad_symbolic_links',
-"    \ }
 
 """ NERDTree - auto-start
 autocmd StdinReadPre * let s:std_in=1
