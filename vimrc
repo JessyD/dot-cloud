@@ -136,6 +136,10 @@ set showmatch                           " highlight matching {[()]}
 """ share clipboard with system (may show unwanted behavior)
 set clipboard=unnamed                   " system wide clipboard
 
+""" show special characters
+set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
+set list
+
 """ auto-detect file changes (not if in command line window)
 set autoread
 function CheckFileChanges()
