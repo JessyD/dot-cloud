@@ -41,7 +41,7 @@ filetype plugin indent on
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """ easymotion
-nmap <unique> <Space> <Plug>(easymotion-bd-w)
+nmap <Space> <Plug>(easymotion-bd-w)
 let g:EasyMotion_smartcase = 1                          " smart case as in vim
 let g:EasyMotion_keys = 'asdghklqwertyuiopzxcvbnmfj'    " layout-friendly
 
@@ -58,27 +58,34 @@ let g:ctrlp_cmd = 'CtrlP'                           " default command
 let g_ctrlp_switch_buffer = 'E'                     " re-open existing buffers
 let g:ctrlp_tabpage_position = 'ac'                 " new tab after current
 let g:ctrlp_show_hidden = 1                         " always show hidden files
+let g:ctrlp_max_files=10000
 
 """ ctrlp - working directory using version control or current/custom directory
 let g:ctrlp_working_path_mode = 'ra'                " current + version control
-nnoremap <unique> <C-l> :CtrlP ~/Code/<CR>
+nnoremap <C-l> :CtrlP ~/Code/<CR>
 
 """ NERDTree - auto-start
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * NERDTree
-if argc() == 0 && !exists("s:std_in")
-else
-    autocmd VimEnter * wincmd p
-endif
+augroup nerd_tree_open
+    au!
+    au StdinReadPre * let s:std_in=1
+    au VimEnter * NERDTree
+    if argc() == 0 && !exists("s:std_in")
+    else
+        au VimEnter * wincmd p
+    endif
+augroup END
 
 """ NERDTree - close all if only NERDTree left
-function NERDTreeCloseAll()
+function! NERDTreeCloseAll()
     if (winnr("$") == 1 && exists("b:NERDTreeType")
                       \ && b:NERDTreeType == "primary")
         q
     endif
 endfunction
-au bufenter * call NERDTreeCloseAll()
+augroup nerd_tree_close
+    au!
+    au bufenter * call NERDTreeCloseAll()
+augroup END
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Appearance
@@ -142,18 +149,21 @@ set list
 
 """ auto-detect file changes (not if in command line window)
 set autoread
-function CheckFileChanges()
+function! CheckFileChanges()
     if getcmdtype() == ""
         checktime
     endif
 endfunction
-au CursorMoved * call CheckFileChanges()
+augroup file_changed
+    au!
+    au CursorMoved * call CheckFileChanges()
+augroup END
 
 """ mouse interaction (may show unwanted behavior)
 set mouse=a                             " mouse can interact
 
 """ project-specific settings (may override default)
-function ProjectSpecificSettings()
+function! ProjectSpecificSettings()
     let l:path = expand('%:p')
     let l:root = projectroot#guess(l:path)
     let l:vim_custom = l:root . "/.custom.vim"
@@ -161,4 +171,13 @@ function ProjectSpecificSettings()
         exec "so " . l:vim_custom
     endif
 endfunction
-au BufReadPost,BufNewFile * call ProjectSpecificSettings()
+augroup project_specific_settings
+    au!
+    au BufReadPost,BufNewFile * call ProjectSpecificSettings()
+augroup END
+
+augroup reload_vimrc
+    au!
+    au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC
+                \|if has('gui_running') | so $MYGVIMRC | endif
+augroup END
