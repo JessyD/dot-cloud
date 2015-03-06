@@ -24,7 +24,7 @@ Plugin 'airblade/vim-gitgutter'         " git diff in sign column
 Plugin 'scrooloose/syntastic'           " syntax checking
 Plugin 'ervandew/supertab'              " tab auto-completion
 Plugin 'ntpeters/vim-better-whitespace' " highlight unwanted whitespaces
-Plugin 'sjl/badwolf'                    " colorscheme
+Plugin 'nanotech/jellybeans.vim'        " colorscheme
 Plugin 'scrooloose/nerdtree'            " file and folder structure
 Plugin 'bling/vim-airline'              " status bar
 Plugin 'dbakker/vim-projectroot'        " guess project root from file
@@ -111,9 +111,9 @@ set backspace=indent,eol,start          " backspace for special cases
 """ color scheme
 set t_Co=256                            " 256 colors
 try
-    colorscheme badwolf                 " colorscheme
+    colorscheme jellybeans              " colorscheme
 catch /^Vim\%((\a\+)\)\=:E185/          " fallback
-    colorscheme elflord                 " just happens at first installation
+    colorscheme slate                   " just happens at first installation
 endtry
 
 """ tabs
