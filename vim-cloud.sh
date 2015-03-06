@@ -34,7 +34,7 @@ echo "Installing dependencies..."
 platform="$(uname -s)"
 if   [[ "$platform" == 'Linux'  ]]
 then
-    dpkg -s ack-grep 2>/dev/null >/dev/null || sudo apt-get -y install ack-grep
+    :
 elif [[ "$platform" == 'Darwin' ]]
 then
     for pkg in ack; do
