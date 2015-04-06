@@ -87,6 +87,12 @@ augroup nerd_tree_close
     au bufenter * call NERDTreeCloseAll()
 augroup END
 
+""" vim-commentary - custom file types
+augroup vim_commentary_custom
+    au!
+    au FileType matlab set commentstring=%\ %s
+augroup END
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Appearance
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
