@@ -58,7 +58,7 @@ let g:ctrlp_cmd = 'CtrlP'                           " default command
 let g_ctrlp_switch_buffer = 'E'                     " re-open existing buffers
 let g:ctrlp_tabpage_position = 'ac'                 " new tab after current
 let g:ctrlp_show_hidden = 1                         " always show hidden files
-let g:ctrlp_max_files=10000
+let g:ctrlp_max_files=10000                         " may slow down a bit
 
 """ ctrlp - working directory using version control or current/custom directory
 let g:ctrlp_working_path_mode = 'ra'                " current + version control
@@ -94,13 +94,14 @@ augroup vim_commentary_custom
 augroup END
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Appearance
+" Miscellaneous
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """ syntax highlighting
 syntax on                               " syntax highlighting
 
 """ spell checking
+""" FIXME add conditional spell check for verbose filetypes (md, latex)
 "setlocal spell                          " spell checking
 
 """ lines
@@ -152,6 +153,22 @@ set clipboard=unnamed                   " system wide clipboard
 """ show special characters
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 set list
+
+""" linearly increment a list of numbers in visual mode
+function! IncrementListLinearly()
+  let a = line('.') - line("'<")
+  let c = virtcol("'<")
+  if a > 0
+    execute 'normal! '.c.'|'.a."\<C-a>"
+  endif
+  normal `<
+endfunction
+vnoremap <C-a> :call IncrementListLinearly()<CR>
+
+augroup HiglightTODO
+    au!
+    au WinEnter,VimEnter * :silent! call matchadd('Todo', 'TODO\|FIXME', -1)
+augroup END
 
 """ auto-detect file changes (not if in command line window)
 set autoread
