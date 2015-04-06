@@ -47,7 +47,7 @@ let g:EasyMotion_keys = 'asdghklqwertyuiopzxcvbnmfj'    " layout-friendly
 
 """ supertab - prevent unwanted tabs
 let g:SuperTabNoCompleteAfter = [
-    \ '^', ',', '\s', ';', "\'", '"', '>', ')', ':', '/', '{', '}'
+    \ '^', ',', '\s', ';', "\'", '"', '>', ')', ':', '/', '%'
 \ ]
 
 """ ctrlp - basic configuration
