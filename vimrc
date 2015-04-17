@@ -31,6 +31,7 @@ Plugin 'dbakker/vim-projectroot'        " guess project root from file
 Plugin 'RobertAudi/vis.vim'             " substitute visual blocks
 Plugin 'clones/vim-cecutil'             " needed by vis
 Plugin 'tpope/vim-commentary'           " easily comment lines out
+Plugin 'neilagabriel/vim-geeknote'      " integrate geeknote in vim
 
 """ required
 call vundle#end()
@@ -43,7 +44,7 @@ filetype plugin indent on
 """ easymotion
 nmap <Space> <Plug>(easymotion-bd-w)
 let g:EasyMotion_smartcase = 1                          " smart case as in vim
-let g:EasyMotion_keys = 'asdghklqwertyuiopzxcvbnmfj'    " layout-friendly
+let g:EasyMotion_keys = 'asdghklqwertyuiopzxcvbnmfj'    " kb-layout-friendly
 
 """ supertab - prevent unwanted tabs
 let g:SuperTabNoCompleteAfter = [
@@ -68,9 +69,12 @@ nnoremap <C-l> :CtrlP ~/Code/<CR>
 augroup nerd_tree_open
     au!
     au StdinReadPre * let s:std_in=1
-    au VimEnter * NERDTree
-    if argc() == 0 && !exists("s:std_in")
-    else
+    """ NERDTree is started only if nothing prevents it
+    """  g:NERDTreePreventOpen is set in this file
+    """  since VimEnter is executed after vimrc and after all -c commands, the
+    """  variable can be used here to prevent the future execution of NERDTree
+    au VimEnter * if !exists('g:NERDTreePreventOpen') | NERDTree | endif
+    if !(argc() == 0 && !exists("s:std_in"))
         au VimEnter * wincmd p
     endif
 augroup END
@@ -91,6 +95,14 @@ augroup END
 augroup vim_commentary_custom
     au!
     au FileType matlab set commentstring=%\ %s
+augroup END
+
+""" vim-geeknote - general settings
+let g:GeeknoteFormat = "markdown"       " warning: it may cause lost content
+augroup geeknote_startup
+    au!
+    """ prevent execution of NERDTree
+    au FileType geeknote let g:NERDTreePreventOpen = 1
 augroup END
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -148,13 +160,14 @@ set smartcase                           " case smartly-insensitive search
 set showmatch                           " highlight matching {[()]}
 
 """ share clipboard with system (may show unwanted behavior)
+""" FIXME allow clipboard sharing over X11 sessions (ssh)
 set clipboard=unnamed                   " system wide clipboard
 
 """ show special characters
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 set list
 
-""" linearly increment a list of numbers in visual mode
+""" linearly increment a list of numbers in visual mode with Ctrl-a
 function! IncrementListLinearly()
   let a = line('.') - line("'<")
   let c = virtcol("'<")
@@ -165,7 +178,8 @@ function! IncrementListLinearly()
 endfunction
 vnoremap <C-a> :call IncrementListLinearly()<CR>
 
-augroup HiglightTODO
+""" always highlight keywords as TODO and FIXME
+augroup HiglightKeywords
     au!
     au WinEnter,VimEnter * :silent! call matchadd('Todo', 'TODO\|FIXME', -1)
 augroup END
@@ -199,6 +213,7 @@ augroup project_specific_settings
     au BufReadPost,BufNewFile * call ProjectSpecificSettings()
 augroup END
 
+""" reload .vimrc in a running vim instance everytime it is changed
 augroup reload_vimrc
     au!
     au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC
