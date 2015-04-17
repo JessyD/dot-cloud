@@ -101,8 +101,8 @@ augroup END
 let g:GeeknoteFormat = "markdown"       " warning: it may cause lost content
 augroup geeknote_startup
     au!
-    """ prevent execution of NERDTree
-    au FileType geeknote let g:NERDTreePreventOpen = 1
+    """ prevent execution of NERDTree and close and existing instance
+    au FileType geeknote let g:NERDTreePreventOpen = 1 | NERDTreeClose
 augroup END
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
