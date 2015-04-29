@@ -31,6 +31,8 @@ fi
 echo "Installing dependencies..."
 
 ## operating system-specific dependencies
+## FIXME different approach with dependencies: list missing, the user takes
+##       care of them
 platform="$(uname -s)"
 if   [[ "$platform" == 'Linux'  ]]
 then
@@ -60,6 +62,10 @@ echo "Updating neovim as well..."
 mkdir -p ~/.nvim
 ln -sfn ~/.vim ~/.nvim
 ln -sfn ~/.vimrc ~/.nvimrc
+
+# copy additional files
+cp html.vim ~/.vim/
+cp vim-instant-markdown_chrome.applescript ~/.vim/
 
 # plugins initialization
 echo "Installing plugins with Vundle..."
