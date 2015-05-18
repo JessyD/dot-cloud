@@ -151,7 +151,7 @@ set softtabstop=4                       " tab width in insert mode
 set expandtab                           " tabs are spaces
 
 """ automatic text-wide word wrapping
-set textwidth=79                        " text width
+set textwidth=80                        " text width
 set formatoptions+=t                    " wrap word
 set colorcolumn=80                      " color text after textwidth
 
