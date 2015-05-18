@@ -51,7 +51,7 @@ let g:EasyMotion_keys = 'asdghklqwertyuiopzxcvbnmfj'    " kb-layout-friendly
 
 """ supertab - prevent unwanted tabs
 let g:SuperTabNoCompleteAfter = [
-    \ '^', ',', '\s', ';', "\'", '"', '>', ')', ':', '/', '%'
+    \ '^', ',', '\s', ';', "\'", '"', '>', ')', ':', '/', '%', '#'
 \ ]
 
 """ ctrlp - basic configuration
