@@ -121,10 +121,6 @@ let g:strip_whitespace_on_save = 1
 """ syntax highlighting
 syntax on                               " syntax highlighting
 
-""" spell checking
-""" FIXME add conditional spell check for verbose filetypes (md, latex)
-"setlocal spell                          " spell checking
-
 """ lines
 set number                              " show line numbers
 set cursorline                          " show current line
@@ -153,7 +149,7 @@ set expandtab                           " tabs are spaces
 """ automatic text-wide word wrapping
 set textwidth=80                        " text width
 set formatoptions+=t                    " wrap word
-set colorcolumn=80                      " color text after textwidth
+set colorcolumn=81                      " color text after textwidth
 
 """ folding
 set foldmethod=indent                   " fold based on indentation
