@@ -64,7 +64,8 @@ ln -sfn ~/.vim ~/.nvim
 ln -sfn ~/.vimrc ~/.nvimrc
 
 # copy additional files
-cp html.vim ~/.vim/
+mkdir -p ~/.vim/after/ftplugin
+cp *.vim ~/.vim/after/ftplugin/
 cp vim-instant-markdown_chrome.applescript ~/.vim/
 
 # plugins initialization
