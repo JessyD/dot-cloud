@@ -35,6 +35,7 @@ Plugin 'neilagabriel/vim-geeknote'          " integrate geeknote in vim
 Plugin 'tpope/vim-markdown'                 " markdown syntax highlighting
 Plugin 'AlessandroA/vim-instant-markdown'   " realtime markdown browser preview
 Plugin 'vim-scripts/applescript.vim'        " applescript syntax highlighting
+Plugin 'Xuyuanp/nerdtree-git-plugin'        " git status in NERDTree
 
 """ required
 call vundle#end()
