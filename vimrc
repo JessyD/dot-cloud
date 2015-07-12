@@ -87,6 +87,9 @@ augroup nerd_tree_close
     au bufenter * call NERDTreeCloseAll()
 augroup END
 
+""" vim-commentary
+autocmd FileType matlab set commentstring=%\ %s
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Appearance
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
