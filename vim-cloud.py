@@ -12,6 +12,7 @@ from sys import platform as _platform
 supported_platforms = ["linux", "darwin"]
 
 # default configuration
+# FIXME make portable
 home_path = os.path.expanduser("~")
 vimrc_file_path = home_path + "/.vimrc"
 vim_dir_path = home_path + "/.vim"
@@ -41,13 +42,15 @@ def install_vimrc(args):
             print("Error while backing up " + vimrc_file_path)
     print("Checking dependencies...")
     if args.once:
+        # TODO
         print("Once")
-    print("i")
 
 def update_vimrc(args):
+    # TODO
     print("u")
 
 def clean_vimrc(args):
+    # TODO
     print("c")
 
 def switch(mode):
