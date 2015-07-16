@@ -24,7 +24,11 @@ Plugin 'airblade/vim-gitgutter'         " git diff in sign column
 Plugin 'scrooloose/syntastic'           " syntax checking
 Plugin 'ervandew/supertab'              " tab auto-completion
 Plugin 'ntpeters/vim-better-whitespace' " highlight unwanted whitespaces
-Plugin 'nanotech/jellybeans.vim'        " colorscheme
+Plugin 'nanotech/jellybeans.vim'        " iolorscheme
+Plugin 'sjl/badwolf'                    " colorscheme
+Plugin 'jonathanfilip/vim-lucius'       " colorscheme
+Plugin '29decibel/codeschool-vim-theme' " colorscheme
+Plugin 'w0ng/vim-hybrid'                " colorscheme
 Plugin 'scrooloose/nerdtree'            " file and folder structure
 Plugin 'bling/vim-airline'              " status bar
 Plugin 'dbakker/vim-projectroot'        " guess project root from file
@@ -120,7 +124,7 @@ let g:strip_whitespace_on_save = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """ syntax highlighting
-syntax on                               " syntax highlighting
+syntax on
 
 """ lines
 set number                              " show line numbers
@@ -219,9 +223,10 @@ augroup project_specific_settings
     au BufReadPost,BufNewFile * call ProjectSpecificSettings()
 augroup END
 
-""" reload .vimrc in a running vim instance everytime it is changed
-augroup reload_vimrc
-    au!
-    au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC
-                \|if has('gui_running') | so $MYGVIMRC | endif
-augroup END
+""" custom highlighting for jellybeans
+let g:jellybeans_overrides = {
+\    'Todo': { 'guifg': '303030', 'guibg': 'f0f000',
+\              'ctermfg': 'Black', 'ctermbg': 'Yellow',
+\              'attr': 'bold' },
+\}
+syntax on
