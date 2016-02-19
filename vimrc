@@ -40,6 +40,8 @@ Plugin 'tpope/vim-markdown'                 " markdown syntax highlighting
 Plugin 'AlessandroA/vim-instant-markdown'   " realtime markdown browser preview
 Plugin 'vim-scripts/applescript.vim'        " applescript syntax highlighting
 Plugin 'Xuyuanp/nerdtree-git-plugin'        " git status in NERDTree
+Plugin 'nvie/vim-flake8'                " add PEP8 checking
+Plugin 'davidhalter/jedi-vim'           " python autocompletion
 
 """ required
 call vundle#end()
@@ -229,4 +231,17 @@ let g:jellybeans_overrides = {
 \              'ctermfg': 'Black', 'ctermbg': 'Yellow',
 \              'attr': 'bold' },
 \}
+
+let python_highlight_all=1
+
+"python with virtualenv support
+py << EOF
+import os
+import sys
+if 'VIRTUAL_ENV' in os.environ:
+    project_base_dir = os.environ['VIRTUAL_ENV']
+    activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+    execfile(activate_this, dict(__file__=activate_this))
+EOF
+
 syntax on
