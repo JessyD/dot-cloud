@@ -93,6 +93,7 @@ augroup END
 function! NERDTreeCloseAll()
     if (winnr("$") == 1 && exists("b:NERDTreeType")
                       \ && b:NERDTreeType == "primary")
+    if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree())
         q
     endif
 endfunction
