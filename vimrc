@@ -119,6 +119,8 @@ augroup END
 let g:instant_markdown_script = "~/.vim/vim-instant-markdown_chrome.applescript"
 
 """ vim-better-whitespace
+autocmd VimEnter * DisableWhitespace
+autocmd VimEnter * EnableWhitespace
 let g:strip_whitespace_on_save = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
