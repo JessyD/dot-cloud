@@ -42,6 +42,7 @@ Plugin 'vim-scripts/applescript.vim'        " applescript syntax highlighting
 Plugin 'Xuyuanp/nerdtree-git-plugin'        " git status in NERDTree
 Plugin 'nvie/vim-flake8'                " add PEP8 checking
 Plugin 'davidhalter/jedi-vim'           " python autocompletion
+Plugin 'Shougo/neocomplete'             " maintain cachewords
 
 """ required
 call vundle#end()
@@ -246,3 +247,6 @@ if 'VIRTUAL_ENV' in os.environ:
 EOF
 
 syntax on
+
+" set neocomplete
+let g:neocomplete#enable_at_startup = 1
