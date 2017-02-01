@@ -43,7 +43,7 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'        " git status in NERDTree
 Plugin 'nvie/vim-flake8'                " add PEP8 checking
 Plugin 'davidhalter/jedi-vim'           " python autocompletion
 Plugin 'Shougo/neocomplete'             " maintain cachewords
-
+Plugin 'vim-scripts/indentpython'       " indentation according to PEP8
 """ required
 call vundle#end()
 filetype plugin indent on
@@ -159,6 +159,7 @@ set expandtab                           " tabs are spaces
 set textwidth=80                        " text width
 set formatoptions+=t                    " wrap word
 set colorcolumn=81                      " color text after textwidth
+set autoindent                          " allow automatic indentation
 
 """ folding
 set foldmethod=indent                   " fold based on indentation
@@ -248,5 +249,8 @@ EOF
 
 syntax on
 
-" set neocomplete
+"set neocomplete
 let g:neocomplete#enable_at_startup = 1
+
+" ignore .pyc files on NERDTree
+let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
