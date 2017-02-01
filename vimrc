@@ -254,3 +254,7 @@ let g:neocomplete#enable_at_startup = 1
 
 " ignore .pyc files on NERDTree
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
+
+" keeps current visual block selection after indentation
+vmap > >gv
+vmap < <gv
