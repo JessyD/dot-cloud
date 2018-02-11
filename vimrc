@@ -35,14 +35,12 @@ Plugin 'dbakker/vim-projectroot'        " guess project root from file
 Plugin 'RobertAudi/vis.vim'             " substitute visual blocks
 Plugin 'clones/vim-cecutil'             " needed by vis
 Plugin 'tpope/vim-commentary'           " easily comment lines out
-Plugin 'neilagabriel/vim-geeknote'          " integrate geeknote in vim
 Plugin 'tpope/vim-markdown'                 " markdown syntax highlighting
 Plugin 'AlessandroA/vim-instant-markdown'   " realtime markdown browser preview
 Plugin 'vim-scripts/applescript.vim'        " applescript syntax highlighting
 Plugin 'Xuyuanp/nerdtree-git-plugin'        " git status in NERDTree
 Plugin 'nvie/vim-flake8'                " add PEP8 checking
 Plugin 'davidhalter/jedi-vim'           " python autocompletion
-Plugin 'Shougo/neocomplete'             " maintain cachewords
 Plugin 'vim-scripts/indentpython'       " indentation according to PEP8
 """ required
 call vundle#end()
@@ -105,14 +103,6 @@ augroup END
 augroup vim_commentary_custom
     au!
     au FileType matlab set commentstring=%\ %s
-augroup END
-
-""" vim-geeknote - general settings
-let g:GeeknoteFormat = "markdown"       " warning: it may cause lost content
-augroup geeknote_startup
-    au!
-    """ prevent execution of NERDTree and close and existing instance
-    au FileType geeknote let g:NERDTreePreventOpen = 1 | NERDTreeClose
 augroup END
 
 """ vim-instant-markdown - general settings
@@ -237,20 +227,17 @@ let g:jellybeans_overrides = {
 
 let python_highlight_all=1
 
-"python with virtualenv support
-py << EOF
-import os
-import sys
-if 'VIRTUAL_ENV' in os.environ:
-    project_base_dir = os.environ['VIRTUAL_ENV']
-    activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-    execfile(activate_this, dict(__file__=activate_this))
-EOF
+" "python with virtualenv support
+" py << EOF
+" import os
+" import sys
+" if 'VIRTUAL_ENV' in os.environ:
+"     project_base_dir = os.environ['VIRTUAL_ENV']
+"     activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+"     execfile(activate_this, dict(__file__=activate_this))
+" EOF
 
 syntax on
-
-"set neocomplete
-let g:neocomplete#enable_at_startup = 1
 
 " ignore .pyc files on NERDTree
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
@@ -264,3 +251,5 @@ map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
+
+set encoding=utf-8
