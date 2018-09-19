@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/Jessica/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -100,12 +100,6 @@ alias vexp="source $VIRTENVS_DIR/exp/bin/activate"
 
 # experimental virtual environment
 alias vkings="source $VIRTENVS_DIR/kings/bin/activate"
-
-# alias for ssh
-alias sshbrutus="ssh -Y -C -c blowfish-cbc,arcfour defarj@brutus.ethz.ch"
-alias sshkcl="ssh -Y -t jed15@bouncer.isd.kcl.ac.uk ssh -Y jed15@cdt022-lap"
-alias sshserver="ssh jessica@192.168.0.100"
-alias sshicl="ssh -Y jdafflon@brodmann39.med.ic.ac.uk"
 
 export LANG=en_GB.UTF-8
 export LC_ALL=en_GB.UTF-8
