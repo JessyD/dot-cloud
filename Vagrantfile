@@ -71,13 +71,18 @@ Vagrant.configure("2") do |config|
   # Define host name
   config.vm.hostname = "singularity-vm"
 
-  ## Oh my Zhs section
+############################################################
+#  # Oh My ZSH Install section
   config.vm.provision :shell, inline: "apt-get -y install zsh"
-  # Clone Oh My Zsh from the git repo
-  config.vm.provision :shell, inline: "sh -c \"$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)\""
+  # Clone Oh My Zsh from the git repo, if it does not exist
+  if not File.directory?(File.expand_path("~/.oh-my-zsh"))
+    config.vm.provision :shell, privileged: false,
+      inline: "git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh"
+  end
   # Change the vagrant user's shell to use zsh
   config.vm.provision :shell, inline: "chsh -s /bin/zsh vagrant"
 
+############################################################
   # Sync data folder from the host machine
   config.vm.synced_folder "~/Dropbox/People/BOpt_DepressionClassification/data", "/home/vagrant/BayOpt/data"
 end
